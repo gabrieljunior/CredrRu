@@ -1,17 +1,60 @@
-<%-- 
-    Document   : index
-    Created on : 27/04/2018, 09:52:14
-    Author     : Gabriel Júnior
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>CredRU</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Restaurante Universitario</h1>
+        
+        <form action="login.jsp" method="POST">
+            <input type="submit" name="entrar" value="Entrar">
+        </form>
+        
+        <div>
+            <h4>Cardápio Semanal</h4>
+            <table border='1px' >
+                <tr>
+                    <td>ALMOÇO</td>
+                </tr>
+                <tr>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                </tr>
+                
+                <%-- pegar esses dados do banco de dados e incluir na tabela --%>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                
+            </table>
+            
+        </div>
+        
+        <div>
+            Horário das Refeições <br>
+            <%-- pegar esses dados do banco --%>
+        </div>
+        
+        <div>
+            Horário de Venda de Créditos<br>
+            <%-- pegar esses dados do banco --%>
+        </div>
     </body>
 </html>
