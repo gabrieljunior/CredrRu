@@ -6,6 +6,8 @@
         <title>CredRU</title>
     </head>
     <body>
+        
+        <a href="/CredRu/Controller?command=ExibeCadastroAluno">Cadastrar Alunos</a>
         <h1>Restaurante Universitario</h1>
         
         <form action="login.jsp" method="POST">

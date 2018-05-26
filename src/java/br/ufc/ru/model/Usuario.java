@@ -1,11 +1,16 @@
 package br.ufc.ru.model;
 
-public class Pessoa {
+import br.ufc.ru.dao.UsuarioDAO;
+import java.io.Serializable;
+
+public class Usuario{
     private String nome;
     private int codigo;
     private String senha;
     private Tipo tipo;
+    private String curso;
     private Credito credito;
+    private String status;
     
     //Fazer verificações nos metodos setter
     public String getNome(){
@@ -16,7 +21,7 @@ public class Pessoa {
         this.nome = nome;
     }
     
-    public int codigo(){
+    public int getCodigo(){
         return codigo;
     }
     
@@ -40,11 +45,36 @@ public class Pessoa {
         this.tipo = tipo;
     }
     
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+    
     public Credito getCredito(){
         return credito;
     }
     
     public void setCredito(Credito credito){
         this.credito = credito;
+    }
+    
+    public String status() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public boolean autenticar(String login, String senha){
+        /*for(int i = 0; i < UsuarioDAO.getUsers().size(); i++){
+            if(UsuarioDAO.getUsers().get(i).getCodigo() == Integer.parseInt(login) && UsuarioDAO.getUsers().get(i).getSenha().equals(senha)){
+                return true;
+            }
+        }*/
+        return false;
     }
 }

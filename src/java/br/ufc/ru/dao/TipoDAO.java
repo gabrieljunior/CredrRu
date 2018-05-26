@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufc.ru.model.DAO;
+package br.ufc.ru.dao;
 
 import br.ufc.ru.model.Tipo;
 import java.util.ArrayList;
 
 public class TipoDAO {
     private static ArrayList<Tipo> tipos = new ArrayList<Tipo>();
-
+    
     public static ArrayList<Tipo> getTipos() {
         return tipos;
     }
@@ -21,5 +21,17 @@ public class TipoDAO {
     
     public static void gravar(Tipo t){
         tipos.add(t);
+    }
+    
+    public static Tipo get(String s){
+        switch(s){
+            case "Aluno":
+                Tipo e = new Tipo();
+                e.setNome("Aluno");
+                e.setValorRefeicao(1.10);
+                tipos.add(e);
+                return tipos.get(0);
+        }
+        return null;
     }
 }

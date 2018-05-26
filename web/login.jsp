@@ -1,3 +1,4 @@
+<%@page import="br.ufc.ru.model.DAO.UsuarioDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,9 +8,9 @@
     </head>
     <body>
         <h1>Login</h1>
-        <form action="index.jsp" method="POST">
+        <form action="login.jsp">
             Matrícula: <input type="text" name="matricula"><br>
-            Senha: <input type="password" name="senha"><br>
+            Senha: <input type="text" name="senha"><br>
             
             <input type="submit" name="entrar" value="Entrar"><br>
             
