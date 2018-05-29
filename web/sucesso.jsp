@@ -6,6 +6,7 @@
         <title>Mensagem</title>
     </head>
     <body>
-        <h1>Operação relizada com sucesso!</h1>
+        valor = <%=request.getParameter("valor")%>
+        <h1><%=request.getParameter("acao")%> realizado com sucesso!</h1>
     </body>
 </html>

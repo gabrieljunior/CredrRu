@@ -1,27 +1,22 @@
 package br.ufc.ru.commands;
 
 import br.ufc.ru.dao.TipoDAO;
-import br.ufc.ru.dao.UsuarioDAO;
 import br.ufc.ru.dao.UsuarioDAO2;
-import br.ufc.ru.dao.UsuarioDAOImpl;
+import br.ufc.ru.model.Tipo;
 import br.ufc.ru.model.Usuario;
-import br.ufc.ru.model.UsuarioBean;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ValidaDadosAlunos implements Command{
+public class AdicionaDocente implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        String codigo = request.getParameter("codigo");
+        String codigo = request.getParameter("matricula");
         String nome = request.getParameter("nome");
-        String curso = request.getParameter("curso");
         String senha = request.getParameter("senha");
         String status = request.getParameter("status");
         
@@ -31,8 +26,7 @@ public class ValidaDadosAlunos implements Command{
                     Usuario user = new Usuario();
                     user.setCodigo(Integer.parseInt(codigo));
                     user.setNome(nome);
-                    user.setCurso(curso);
-                    user.setTipo(TipoDAO.get("Aluno"));
+                    user.setTipo(new Tipo());
                     user.setStatus(status);
                     user.setSenha(senha);
                     
@@ -59,4 +53,5 @@ public class ValidaDadosAlunos implements Command{
             }
         }
     }
+    
 }

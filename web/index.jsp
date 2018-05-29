@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.ufc.ru.dao.UsuarioDAO2"%>
+<%@page import="br.ufc.ru.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +11,6 @@
     <body>
         
         <a href="/CredRu/Controller?command=ExibeCadastroAluno">Cadastrar Alunos</a>
-        <h1>Restaurante Universitario</h1>
         
         <form action="login.jsp" method="POST">
             <input type="submit" name="entrar" value="Entrar">

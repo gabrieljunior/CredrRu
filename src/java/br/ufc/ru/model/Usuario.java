@@ -9,7 +9,7 @@ public class Usuario{
     private String senha;
     private Tipo tipo;
     private String curso;
-    private Credito credito;
+    private double saldo;
     private String status;
     
     //Fazer verificações nos metodos setter
@@ -53,12 +53,12 @@ public class Usuario{
         this.curso = curso;
     }
     
-    public Credito getCredito(){
-        return credito;
+    public double getSaldo(){
+        return saldo;
     }
     
-    public void setCredito(Credito credito){
-        this.credito = credito;
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
     }
     
     public String status() {

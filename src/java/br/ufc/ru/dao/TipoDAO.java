@@ -26,12 +26,31 @@ public class TipoDAO {
     public static Tipo get(String s){
         switch(s){
             case "Aluno":
-                Tipo e = new Tipo();
-                e.setNome("Aluno");
-                e.setValorRefeicao(1.10);
-                tipos.add(e);
+                Tipo e1 = new Tipo();
+                e1.setNome("Aluno");
+                e1.setValorRefeicao(1.10);
+                tipos.add(0, e1);
                 return tipos.get(0);
-        }
+            case "Aluno Beneficiario":
+                Tipo e2 = new Tipo();
+                e2.setNome("Aluno Beneficiario");
+                e2.setValorRefeicao(0.00);
+                tipos.add(1, e2);
+                return tipos.get(1);
+            case "Servidor":
+                Tipo e3 = new Tipo();
+                e3.setNome("Servidor");
+                e3.setValorRefeicao(1.60);
+                tipos.add(2, e3);
+                return tipos.get(2);
+            case "Docente":
+                Tipo e4 = new Tipo();
+                e4.setNome("Docente");
+                e4.setValorRefeicao(2.20);
+                tipos.add(3, e4);
+                return tipos.get(3);
+            
+       }
         return null;
     }
 }
