@@ -1,5 +1,6 @@
 package br.ufc.ru.commands;
 
+import br.ufc.ru.dao.TipoDAO;
 import br.ufc.ru.dao.UsuarioDAO2;
 import br.ufc.ru.model.Tipo;
 import br.ufc.ru.model.Usuario;
@@ -24,7 +25,8 @@ public class AdicionaServidor implements Command{
                     Usuario user = new Usuario();
                     user.setCodigo(Integer.parseInt(codigo));
                     user.setNome(nome);
-                    user.setTipo(new Tipo());
+                    
+                    user.setTipo(TipoDAO.get("Servidor"));
                     user.setStatus(status);
                     user.setSenha(senha);
                     
