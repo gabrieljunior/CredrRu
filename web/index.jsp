@@ -10,9 +10,10 @@
     </head>
     <body>
         
-        <a href="/CredRu/Controller?command=ExibeCadastroAluno">Cadastrar Alunos</a>
+        <a href="Pagina?page=ExibeCadastroAluno">Cadastrar Alunos</a>
         
-        <form action="login.jsp" method="POST">
+        <form action="Pagina?page=Login" method="POST">
+            
             <input type="submit" name="entrar" value="Entrar">
         </form>
         

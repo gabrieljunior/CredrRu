@@ -4,25 +4,59 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href=".../css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+        
         <title>CredRU | Login</title>
     </head>
     <body>
-        <h1>Login</h1>
-        <c:if test="${mensagens.existeErros}">
-              <div id="erro">
+        <section class="hero has-background-light is-fullheight">
+            
+        <div class="hero-body">
+            <div class="column is-4 is-offset-4">
+                
+        <div class="box" >
+        <p class="title has-text-centered">
+            <strong>Login</strong>
+        </p>
+        
+        <form action="Pagina">
+            <input type="hidden" name="page" value="Autentica">
+            
+            <div class="field">
+                <label class="label">Código</label>
+                <div class="control">
+                    <input class="input " type="text" name="codigo" pattern="[0-9]*" placeholder="Digite o seu código">
+                </div>
+            </div>
+            
+            <div class="field">
+                <label class="label">Senha</label>
+                <div class="control">
+                    <input class="input" type="password" name="senha" placeholder="Digite sua senha">
+                </div>
+            </div>
+            
+            <c:if test="${mensagens.existeErros}">
+              <div class="control has-text-danger">
                   <ul>
                       <c:forEach var="erro" items="${mensagens.erros}">
-                          <li> ${erro} </li>
+                          
+                              <li> ${erro} </li>
+                          
                           </c:forEach>
                   </ul>
               </div>
-          </c:if>
-        <form action="Controller">
-            <input type="hidden" name="command" value="Autentica">
-            Matrícula: <input type="number" name="matricula"><br>
-            Senha: <input type="password" name="senha"><br>
+            </c:if>
             
-            <input type="submit" name="entrar" value="Entrar"><br>
-        </form>   
+            <div class="control is-grouped-centered">
+                <button type="submit" class="hero-buttons button is-primary is-fullwidth"><strong>Entrar<strong></button>
+            </div>
+        </form>
+        </div>
+        </div>
+        </div>
+        
+        </section>
     </body>
 </html>

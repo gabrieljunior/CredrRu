@@ -9,10 +9,10 @@
     <body>
         <h3>Cadastrar Docente</h3>
         
-        <form action="Controller">
-            <input type="hidden" name="command" value="AdicionaDocente">
+        <form action="Pagina">
+            <input type="hidden" name="page" value="AdicionaUsuario">
             Nome Completo: <input type="text" name="nome"><br>
-            Matricula: <input type="number" name="matricula"><br>
+            Código: <input type="number" name="codigo"><br>
             Senha: <input type="password" name="senha" value="ufcrussas"><br>
             <input type="radio" name="status" value="ativo" checked>Ativo
             <input type="radio" name="status" value="inativo">Inativo<br>

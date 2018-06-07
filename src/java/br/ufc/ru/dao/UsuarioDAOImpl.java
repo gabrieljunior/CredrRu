@@ -5,14 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAOImpl implements UsuarioDAO{
-    List<Usuario> usuarios;
-    
-    public UsuarioDAOImpl(){
-        usuarios = new ArrayList<Usuario>();
-    }
+    private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     
     @Override
-    public List<Usuario> getTodosUsuarios() {
+    public ArrayList<Usuario> getTodosUsuarios() {
         return usuarios;
     }
 

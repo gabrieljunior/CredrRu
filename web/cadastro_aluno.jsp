@@ -11,10 +11,10 @@
     </head>
     <body>
         <h3>Cadastrar Aluno</h3>
-        <form action="Controller" method="POST">
-            <input type="hidden" name="command" value="ValidaDadosAlunos">
+        <form action="Pagina">
+            <input type="hidden" name="page" value="AdicionaUsuario">
             
-            Matricula: <input type="number" name="codigo"><br>
+            Código: <input type="number" name="codigo"><br>
             Nome Completo: <input type="text" name="nome"><br>
             Curso: <select name="curso">
                     <% CursoDAO.init();

@@ -8,11 +8,12 @@
     </head>
     <body>
         <h3>Cadastrar Servidor TAE</h3>
-        
-        <form action="Controller" method="POST">
-            <input type="hidden" name="command" value="AdicionaServidor">
+        <!Colocar os possiveis erros que pode acontecer: Campo vazio, usuario já cadastrado>
+        <form action="Pagina" method="POST">
+            <input type="hidden" name="page" value="AdicionaUsuario">
+            
             Nome Completo: <input type="text" name="nome"><br>
-            Matricula: <input type="number" name="matricula"><br>
+            Matricula: <input type="number" name="codigo"><br>
             Senha: <input type="password" name="senha" value="ufcrussas"><br>
             <input type="radio" name="status" value="ativo" checked>Ativo
             <input type="radio" name="status" value="inativo">Inativo<br>

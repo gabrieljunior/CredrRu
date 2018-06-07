@@ -1,12 +1,14 @@
 package br.ufc.ru.model;
 
 import br.ufc.ru.dao.HistoricoDAO;
+import br.ufc.ru.dao.HistoricoDAOImpl;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Movimento {
+public class Movimento implements Serializable{
    private int codigo;
    private String data;
    private String hora;
@@ -67,7 +69,9 @@ public class Movimento {
         this.setDescricao(descricao);
         this.setValor(valor);
         
-        HistoricoDAO.gravar(this);
+        
+        HistoricoDAO historicoDao = new HistoricoDAOImpl();
+        historicoDao.adicionarMovimento(this);
     }
     
     public boolean JaRealizouRefeicao(int codigo){
@@ -77,20 +81,8 @@ public class Movimento {
         DateTimeFormatter  dataFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter  horaFormatada = DateTimeFormatter.ofPattern("HH");
         
-        ArrayList<Movimento> historico = HistoricoDAO.getHistorico(codigo);
-        if(historico != null){
-            for(int i = 0; i < historico.size(); i++){
-                if(historico.get(i).getData().equals(data.format(dataFormatada)) && historico.get(i).getDescricao().equals("REFEIÇÃO")){
-                    String hora2 = historico.get(i).getHora().substring(0, 2);
-                    if(Integer.parseInt(hora.format(horaFormatada)) > 14 && Integer.parseInt(hora2) > 14){
-                        return true;
-                    }
-                    if(Integer.parseInt(hora.format(horaFormatada)) < 14 && Integer.parseInt(hora2) < 14){
-                        return true;
-                    }
-                }
-            }
-        }
+        HistoricoDAO historicoDao = new HistoricoDAOImpl();
+        
         return false;
     }
 }

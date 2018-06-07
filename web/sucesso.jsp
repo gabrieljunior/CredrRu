@@ -7,6 +7,8 @@
     </head>
     <body>
         valor = <%=request.getParameter("valor")%>
-        <h1><%=request.getParameter("acao")%> realizado com sucesso!</h1>
+        <h1><%=request.getParameter("acao")%> realizado com sucesso!</h1><br>
+        <br>
+        <a href="index.jsp">VOLTAR</a>
     </body>
 </html>

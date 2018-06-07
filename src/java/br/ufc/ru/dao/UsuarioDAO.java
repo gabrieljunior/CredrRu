@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface UsuarioDAO {
-    public List<Usuario> getTodosUsuarios();
+    public ArrayList<Usuario> getTodosUsuarios();
     public Usuario getUsuario(int codigo);
     public void updateUsuario(Usuario usuario);
     public void deleteUsuario(Usuario usuario);

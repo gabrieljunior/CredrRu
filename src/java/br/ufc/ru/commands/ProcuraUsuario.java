@@ -1,6 +1,8 @@
 package br.ufc.ru.commands;
 
+import br.ufc.ru.dao.UsuarioDAO;
 import br.ufc.ru.dao.UsuarioDAO2;
+import br.ufc.ru.dao.UsuarioDAOImpl;
 import br.ufc.ru.model.Credito;
 import br.ufc.ru.model.Usuario;
 import java.io.IOException;
@@ -17,10 +19,11 @@ public class ProcuraUsuario implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        String matricula = request.getParameter("matricula");
-        if(matricula != null && matricula.isEmpty() != true){
-            if(UsuarioDAO2.getUsuario(Integer.parseInt(matricula)) != null){
-                Usuario usuario = UsuarioDAO2.getUsuario(Integer.parseInt(matricula));
+        String codigo = request.getParameter("codigo");
+        if(codigo != null && codigo.isEmpty() != true){
+            UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+            if(usuarioDAO.getUsuario(Integer.parseInt(codigo)) != null){
+                Usuario usuario = usuarioDAO.getUsuario(Integer.parseInt(codigo));
                 Credito credito = new Credito();
                 double almoco = 5 * usuario.getTipo().getValorRefeicao();
                 double almocoJanta = 10 * usuario.getTipo().getValorRefeicao();

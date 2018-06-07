@@ -1,0 +1,22 @@
+html,body {
+  
+  font-size: 20px;
+  font-weight: 300;
+}
+.hero .has-background-light .is-fullheight{
+    
+}
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    cursor:pointer;
+    display:block;
+    width:8px;
+    color: #333;
+    text-align:center;
+    position:relative;
+}
+   input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+   margin: 0; 
+}

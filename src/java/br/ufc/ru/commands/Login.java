@@ -19,23 +19,5 @@ public class Login implements Command{
         } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
-        
-        /*if(request.getParameter("matricula") != null && request.getParameter("matricula").isEmpty() != true){
-            if(request.getParameter("senha") != null && request.getParameter("senha").isEmpty() != true){
-                for(int i = 0; i < UsuarioDAO.getUsers().size(); i++){
-                    out.print(UsuarioDAO.getUsers().get(i).getCodigo());
-                    if(UsuarioDAO.getUsers().get(i).getCodigo() == Integer.parseInt(request.getParameter("matricula")) && UsuarioDAO.getUsers().get(i).getSenha().equals(request.getParameter("senha"))){
-                        RequestDispatcher rd = request.getRequestDispatcher("historico.jsp");
-                        try {
-                            rd.forward(request, response);
-                        } catch (ServletException ex) {
-                            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
-            }
-        }*/
     }
 }

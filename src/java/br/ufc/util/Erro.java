@@ -1,4 +1,4 @@
-package br.ufc.ru.model;
+package br.ufc.util;
 
 import java.io.Serializable;
 import java.util.ArrayList;

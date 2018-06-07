@@ -15,8 +15,8 @@
     </head>
     <body>
         <h1>Importar Alunos</h1>
-        <form action="Controller" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="command" value="ImportaAlunos">
+        <form action="Pagina" enctype="multipart/form-data">
+            <input type="hidden" name="page" value="ImportaAlunos">
             Selecione o curso:
             <select name="curso">
             <% CursoDAO.init();

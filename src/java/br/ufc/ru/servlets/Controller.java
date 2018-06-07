@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "Controller", urlPatterns = {"/Controller"})
+@WebServlet(name = "Pagina", urlPatterns = {"/Pagina"})
 public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Command comando = null;
         try {
             comando = (Command)Class.forName("br.ufc.ru.commands." +
-            request.getParameter("command")).newInstance();
+            request.getParameter("page")).newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
