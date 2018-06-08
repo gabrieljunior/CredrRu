@@ -12,19 +12,36 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Locale;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@Entity
+@Table (name="usuario")
 public class Usuario implements Serializable{
-    private String nome;
+    @Id
     private int codigo;
+    @Column
+    private String nome;
+    @Column
     private String senha;
+    
+    private int idTipo;
+    //pensar
     private Tipo tipo;
+    @Column
     private String curso;
+    @Column
     private double saldo;
+    @Column
     private String status;
     
     //Fazer verificações nos metodos setter
+    
+    
     public String getNome(){
         return nome;
     }
