@@ -16,7 +16,7 @@
         </c:if>
         Vc é ${tipo.nome}
         Olá ${usuario.nome}, Seja bem vindo!
-        
+        Vc está ${usuario.status}
         SALDO: ${usuario.saldo}
         
         HISTÓRICO DE CONSUMO

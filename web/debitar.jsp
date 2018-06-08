@@ -6,13 +6,13 @@
         <title>Debitar</title>
     </head>
     <body>
-        <form action="Controller">
-            <input type="hidden" name="command" value="RealizaDebito">
+        <form action="Pagina">
+            <input type="hidden" name="page" value="RealizaDebito">
             <input type="hidden" name="codigo" value="${usuario.codigo}">
             
-            Código: ${usuario.codigo}
-            Nome Completo: ${usuario.nome}
-            Valor da Refeição: ${usuario.tipo.valorRefeicao}
+            Código: ${usuario.codigo}<br>
+            Nome Completo: ${usuario.nome}<br>
+            Valor da Refeição: ${usuario.tipo.valorRefeicao}<br>
             
             <input type="submit" name="confirmar" value="Confirmar">
         </form>

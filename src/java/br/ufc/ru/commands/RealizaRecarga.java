@@ -20,7 +20,7 @@ public class RealizaRecarga implements Command{
         
         if(usuario.realizarRecarga(codigo, valor)){
             String acao = "Recarga";
-            String url = "/Page?co=ExibeSucesso&acao="+acao;
+            String url = "/Pagina?page=ExibeSucesso&acao="+acao;
             RequestDispatcher rd = request.getRequestDispatcher(url);
             try {
                 rd.forward(request, response);

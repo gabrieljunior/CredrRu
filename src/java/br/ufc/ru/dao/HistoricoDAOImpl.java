@@ -9,7 +9,21 @@ public class HistoricoDAOImpl implements HistoricoDAO{
     public ArrayList<Movimento> getTodosMovimentos() {
         return historicos;
     }
-
+    
+    @Override
+    public ArrayList<Movimento> getMovimentoUsurio(int codigo){
+        ArrayList<Movimento> historico = null;
+        for(Movimento movimento : historicos){
+            if(movimento.getCodigo() == codigo){
+                if(historico == null){
+                    historico = new ArrayList<Movimento>();
+                }
+                historico.add(movimento);
+            }
+        }
+        return historico;
+    }
+    
     @Override
     public Movimento getMovimento(int codigo) {
         for(int i = 0; i < historicos.size(); i++){

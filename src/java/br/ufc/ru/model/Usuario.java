@@ -1,8 +1,8 @@
 package br.ufc.ru.model;
-import br.ufc.ru.commands.ImportaAlunos;
+import br.ufc.ru.dao.HistoricoDAO;
+import br.ufc.ru.dao.HistoricoDAOImpl;
 import br.ufc.ru.dao.TipoDAO;
 import br.ufc.ru.dao.UsuarioDAO;
-import br.ufc.ru.dao.UsuarioDAO2;
 import br.ufc.ru.dao.UsuarioDAOImpl;
 import br.ufc.util.Erro;
 import java.io.BufferedReader;
@@ -10,11 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
-import static java.lang.System.out;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -196,7 +193,57 @@ public class Usuario implements Serializable{
             return true;
     }
     
-    public boolean debitar(){
+    public boolean realizarDebito(HttpServletRequest request){
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
+        
+        Usuario usuario = usuarioDAO.getUsuario(codigo);  
+        
+        //Criar outra condição para verificar se o usuario fez uma refeição no mesmo periodo de tempo
+        //Retornar erro se o saldo for insuficiente
+        
+        if(usuario.getSaldo() >= usuario.getTipo().getValorRefeicao()){
+            double saldoAtual = usuario.getSaldo();
+            usuarioDAO.getUsuario(Integer.parseInt(request.getParameter("codigo"))).setSaldo(saldoAtual-usuario.getTipo().getValorRefeicao());
+            double valor = usuarioDAO.getUsuario(Integer.parseInt(request.getParameter("codigo"))).getSaldo();
+            
+            Locale ptBr = new Locale("pt", "BR");
+            String valorString = NumberFormat.getCurrencyInstance(ptBr).format(valor);
+            
+            request.setAttribute("valor", valorString);
+            
+            String descricao = "REFEIÇÃO";
+            Movimento movimento = new Movimento();
+            movimento.registrar(codigo, descricao, valor);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean procuraUsuario(HttpServletRequest request){
+        String codigo = request.getParameter("codigo");
+        if(codigo != null && codigo.isEmpty() != true){
+            UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+            if(usuarioDAO.getUsuario(Integer.parseInt(codigo)) != null){
+                if(usuarioDAO.getUsuario(Integer.parseInt(codigo)).getStatus().equals("ativo")){
+                    Usuario usuario = usuarioDAO.getUsuario(Integer.parseInt(codigo));
+                    Credito credito = new Credito();
+                    double almoco = 5 * usuario.getTipo().getValorRefeicao();
+                    double almocoJanta = 10 * usuario.getTipo().getValorRefeicao();
+                        
+                    Locale ptBr = new Locale("pt", "BR");
+                    credito.setAlmoco(NumberFormat.getCurrencyInstance(ptBr).format(almoco));
+                    credito.setAlmocoJanta(NumberFormat.getCurrencyInstance(ptBr).format(almocoJanta));
+                    String valor = NumberFormat.getCurrencyInstance(ptBr).format(usuario.getTipo().getValorRefeicao());
+                
+                    request.setAttribute("credito", credito);
+                    request.setAttribute("valorRefeicao", valor);
+                    request.setAttribute("usuario", usuario);
+                    
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

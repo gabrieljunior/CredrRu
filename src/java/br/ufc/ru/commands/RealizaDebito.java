@@ -1,6 +1,8 @@
 package br.ufc.ru.commands;
 
+import br.ufc.ru.dao.UsuarioDAO;
 import br.ufc.ru.dao.UsuarioDAO2;
+import br.ufc.ru.dao.UsuarioDAOImpl;
 import br.ufc.ru.model.Usuario;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -14,14 +16,11 @@ public class RealizaDebito implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        Usuario usuario = UsuarioDAO2.getUsuario(Integer.parseInt(request.getParameter("codigo")));
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Usuario usuario = usuarioDAO.getUsuario(Integer.parseInt(request.getParameter("codigo")));
+        String valor = request.getParameter("valor");
         
-        //Criar outra condição para verificar se o usuario fez uma refeição no mesmo periodo de tempo
-        if(usuario.getSaldo() >= usuario.getTipo().getValorRefeicao()){
-            double saldoAtual = usuario.getSaldo();
-            UsuarioDAO2.getUsuario(Integer.parseInt(request.getParameter("codigo"))).setSaldo(saldoAtual-usuario.getTipo().getValorRefeicao());
-            double valor = UsuarioDAO2.getUsuario(Integer.parseInt(request.getParameter("codigo"))).getSaldo();
-            
+        if(usuario.realizarDebito(request)){
             RequestDispatcher rd = request.getRequestDispatcher("/sucesso.jsp?acao=Debito&valor="+valor);
             try {
                 rd.forward(request, response);

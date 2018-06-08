@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public interface HistoricoDAO {
     public ArrayList<Movimento> getTodosMovimentos();
+    public ArrayList<Movimento> getMovimentoUsurio(int codigo);
     public Movimento getMovimento(int codigo);
     public void updateMovimento(Movimento movimento);
     public void deleteMovimento(Movimento movimento);

@@ -3,10 +3,12 @@ package br.ufc.ru.model;
 import br.ufc.ru.dao.HistoricoDAO;
 import br.ufc.ru.dao.HistoricoDAOImpl;
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Movimento implements Serializable{
    private int codigo;
@@ -85,4 +87,14 @@ public class Movimento implements Serializable{
         
         return false;
     }
+
+    @Override
+    public String toString() {
+        Locale ptBr = new Locale("pt", "BR");
+        String valorString = NumberFormat.getCurrencyInstance(ptBr).format(valor);
+        
+        return valorString;
+    }
+    
+    
 }

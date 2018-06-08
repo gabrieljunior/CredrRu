@@ -1,5 +1,4 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="br.ufc.ru.dao.UsuarioDAO2"%>
 <%@page import="br.ufc.ru.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -19,39 +19,26 @@ public class ProcuraUsuario implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        String codigo = request.getParameter("codigo");
-        if(codigo != null && codigo.isEmpty() != true){
-            UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-            if(usuarioDAO.getUsuario(Integer.parseInt(codigo)) != null){
-                Usuario usuario = usuarioDAO.getUsuario(Integer.parseInt(codigo));
-                Credito credito = new Credito();
-                double almoco = 5 * usuario.getTipo().getValorRefeicao();
-                double almocoJanta = 10 * usuario.getTipo().getValorRefeicao();
-                
-                        
-                Locale ptBr = new Locale("pt", "BR");
-                credito.setAlmoco(NumberFormat.getCurrencyInstance(ptBr).format(almoco));
-                credito.setAlmocoJanta(NumberFormat.getCurrencyInstance(ptBr).format(almocoJanta));
-                String valor = NumberFormat.getCurrencyInstance(ptBr).format(usuario.getTipo().getValorRefeicao());
-                
-                request.setAttribute("credito", credito);
-                request.setAttribute("valorRefeicao", valor);
-                request.setAttribute("usuario", usuario);
-            }
-        }
+        Usuario usuario = new Usuario();
         RequestDispatcher rd;
-        if(request.getParameter("acao").equals("recarga")){
-            rd = request.getRequestDispatcher("/recarga.jsp");
-        }else{
-            rd = request.getRequestDispatcher("/debitar.jsp");
-        }
         
-        try {
-            rd.forward(request, response);
-        } catch (ServletException ex) {
-            Logger.getLogger(ProcuraUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ProcuraUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        if(usuario.procuraUsuario(request)){
+            if(request.getParameter("acao").equals("recarga")){
+                rd = request.getRequestDispatcher("/recarga.jsp");
+            }else{
+                rd = request.getRequestDispatcher("/debitar.jsp");
+            }
+            
+            
+        }else{
+            rd = request.getRequestDispatcher("/index.jsp");
         }
+        try {
+                rd.forward(request, response);
+            } catch (ServletException ex) {
+                Logger.getLogger(ProcuraUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ProcuraUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 }

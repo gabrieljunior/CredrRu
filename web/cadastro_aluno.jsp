@@ -6,31 +6,80 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
         <title>Cadastro</title>
     </head>
     <body>
-        <h3>Cadastrar Aluno</h3>
-        <form action="Pagina">
-            <input type="hidden" name="page" value="AdicionaUsuario">
-            
-            Código: <input type="number" name="codigo"><br>
-            Nome Completo: <input type="text" name="nome"><br>
-            Curso: <select name="curso">
-                    <% CursoDAO.init();
-                        ArrayList<String> cursos = CursoDAO.getCursos();
-                          for(String curso : cursos){%>
-                          <option><%=curso%></option>
-                          <%}%>
-                   </select><br>
-                   <input type="checkbox" name="beneficiario"> Beneficiário PRAE<br/>
-            Senha: <input type="text" name="senha" value="ufcrussas"><br>
-            Status: 
-            <input type="radio" name="status" value="ativo" checked>Ativo
-            <input type="radio" name="status" value="inativo">Inativo<br>
-            
-            <input type="submit" name="salvar" value="Salvar">
-            <input type="reset" name="limpar" value="Limpar">
-        </form>
+        <section class="hero has-background-light is-fullheight">
+            <div class="hero-body has-background-light">
+                <div class="column is-4 is-offset-4">
+                    <p class="title has-text-centered">
+                        <strong>Cadastrar Aluno</strong>
+                    </p>
+                        <form action="Pagina">
+                            <input type="hidden" name="page" value="AdicionaUsuario">
+                            
+                            <div class="field">
+                                <div class="field">
+                                <label class="label">Código</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="codigo" placeholder="Digite o código">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                <label class="label">Nome Completo</label>    
+                                    <div class="control">
+                                        <input class="input" type="text" name="nome" placeholder="Digite o nome completo">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                <label class="label">Curso</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select name="curso">
+                                        <% CursoDAO.init();
+                                        ArrayList<String> cursos = CursoDAO.getCursos();
+                                        for(String curso : cursos){%>
+                                        <option><%=curso%></option>
+                                        <%}%>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                                        
+                        <div class="field">
+                            <label class="checkbox" name="yes">
+                                <input type="checkbox">
+                                <strong>Beneficiário PRAE</strong>
+                            </label>
+                        </div>
+                            <div class="field">
+                                <label class="label">Senha</label>    
+                                    <div class="control">
+                                        <input class="input" type="password" name="senha" value="ufcrussas">
+                                    </div>
+                            </div>
+                            <div class="field">
+                            <div class="control">
+                                <strong>Status &nbsp;</strong>
+                                <label class="radio">
+                                    <input type="radio" name="status" value="ativo" checked>
+                                    Ativo
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="status" value="inativo">
+                                    Inativo
+                                </label>
+                            </div>
+                            </div>
+                            <div class="control is-grouped-centered">
+                                <button type="submit" class="hero-buttons button is-primary is-fullwidth"><strong>Cadastrar<strong></button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </body>
 </html>
