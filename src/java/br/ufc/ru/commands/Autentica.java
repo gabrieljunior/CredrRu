@@ -1,6 +1,6 @@
 package br.ufc.ru.commands;
 
-
+import br.ufc.ru.dao.UsuarioDAO2;
 import br.ufc.util.Erro;
 import br.ufc.ru.model.Tipo;
 import br.ufc.ru.model.Usuario;
