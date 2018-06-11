@@ -1,7 +1,9 @@
 package br.ufc.ru.model;
 import br.ufc.ru.dao.HistoricoDAO;
 import br.ufc.ru.dao.HistoricoDAOImpl;
-import br.ufc.ru.dao.TipoDAO;
+import br.ufc.ru.dao.TipoDao;
+import br.ufc.ru.dao.TipoDAOImpl;
+import br.ufc.ru.dao.TipoDao;
 import br.ufc.ru.dao.UsuarioDAO;
 import br.ufc.ru.dao.UsuarioDAOImpl;
 import br.ufc.util.Erro;
@@ -14,30 +16,44 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+
 
 @Entity
-@Table (name="usuario")
+@Table 
 public class Usuario implements Serializable{
+    
     @Id
+    @GeneratedValue
+    private int id;
+    @Column
     private int codigo;
+    
+    private Tipo tipo;
     @Column
     private String nome;
     @Column
     private String senha;
-    
-    private int idTipo;
-    //pensar
-    private Tipo tipo;
     @Column
     private String curso;
     @Column
     private double saldo;
     @Column
     private String status;
+    
     
     //Fazer verificações nos metodos setter
     
@@ -139,14 +155,15 @@ public class Usuario implements Serializable{
         if(codigo != null && codigo.isEmpty() != true){
             if(nome != null && nome.isEmpty() != true){
                 UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+                TipoDao tipoDao = new TipoDAOImpl();
                 Usuario usuario = usuarioDAO.getUsuario(Integer.parseInt(codigo));
                 
                 if( usuario == null ){
-                    Usuario user = new Usuario();
+                    Usuario user = new Usuario();                
                     user.setCodigo(Integer.parseInt(codigo));
                     user.setNome(nome);
                     user.setCurso(curso);
-                    user.setTipo(TipoDAO.get("Aluno"));
+                    //user.setTipo();
                     user.setStatus(status);
                     user.setSenha(senha);
                     
@@ -164,7 +181,7 @@ public class Usuario implements Serializable{
       exceção, pois não vai encontar o arquivo.
       Vamos torcer que ele não peça para abrir um arquivo que esteja em outro diretório.
     */
-    public boolean importarAlunos(HttpServletRequest request) throws FileNotFoundException, IOException{
+   public boolean importarAlunos(HttpServletRequest request) throws FileNotFoundException, IOException{
         String path = request.getParameter("file");
         
         BufferedReader buffRead = new BufferedReader(new FileReader("D:/"+path));
@@ -183,7 +200,7 @@ public class Usuario implements Serializable{
                 user.setCodigo(Integer.parseInt(matricula));
                 user.setNome(nome);
                 user.setCurso(curso);
-                user.setTipo(TipoDAO.get("Aluno"));
+                user.setTipo(user.getTipo());//Mudei
                 user.setStatus(status);
                 user.setSenha(senha);
                 
@@ -263,4 +280,7 @@ public class Usuario implements Serializable{
         }
         return false;
     }
+    
+    
+    
 }
